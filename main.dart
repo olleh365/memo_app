@@ -35,6 +35,12 @@ class _MemoListScreenState extends State<MemoListScreen> {
     });
   }
 
+  void _deleteMemo(int index) {
+    setState(() {
+      _memos.removeAt(index);
+    });
+  }
+
   void _showAddMemoDialog() {
     showDialog(
       context: context,
@@ -81,6 +87,12 @@ class _MemoListScreenState extends State<MemoListScreen> {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(_memos[index]),
+            trailing: IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: () {
+                _deleteMemo(index);
+              },
+            ),
           );
         },
       ),
